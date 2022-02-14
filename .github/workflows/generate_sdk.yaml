@@ -1,19 +1,23 @@
 name: Generate TypeScript API client
 
 on:
-  repository_dispatch:
-    types: [on-oas-updated]
+  push:
+    branches:
+      - fix-workflow
+  # repository_dispatch:
+    # types: [on-oas-updated]
 
 jobs:
-  generate_ts:
-    name: Generate Go client
+  generate:
+    name: Generate TS client
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: craicoverflow/openapi-generator-action@v1
         with:
           generator: typescript-fetch
-          input: https://raw.githubusercontent.com/Apicurio/apicurio-registry/master/${{ github.event.client_payload.openapi_file_path }}
+          input: "https://raw.githubusercontent.com/Apicurio/apicurio-registry/master/app/src/main/resources-unfiltered/META-INF/resources/api-specifications/registry/v2/openapi.json"
+          # input: https://raw.githubusercontent.com/Apicurio/apicurio-registry/master/${{ github.event.client_payload.openapi_file_path }}
           output: src
           additional-properties: "supportsES6=true,typescriptThreePlus=true"
           ignore-file-override: .openapi-generator-ignore
@@ -22,7 +26,7 @@ jobs:
         with:
           filters: |
             generated:
-              - 'src/**'
+              - '**'
 
       - name: Create Pull Request
         if: steps.changes.outputs.generated == 'true'
