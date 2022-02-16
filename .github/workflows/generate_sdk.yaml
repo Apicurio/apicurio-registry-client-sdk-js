@@ -23,6 +23,8 @@ jobs:
           output: src
           additional-properties: "supportsES6=true,typescriptThreePlus=true"
           ignore-file-override: .openapi-generator-ignore
+      - name: Clean up temp files
+        run: rm -r tmp
       - uses: dorny/paths-filter@v2
         id: changes
         with:
