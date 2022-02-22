@@ -1,6 +1,6 @@
 {
   "name": "apicurio-registry-client",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Apicurio Registry client for JavaScript",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
