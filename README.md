@@ -1,5 +1,8 @@
 # apicurio-registry-client-sdk-js
 
+This repo is deprecated.
+"For 3.X we switched to the Kiota generated SDK here: https://github.com/Apicurio/apicurio-registry/tree/main/typescript-sdk".
+
 Apicurio Registry client for JavaScript
 
 ## Installation
